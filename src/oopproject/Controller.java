@@ -1,11 +1,6 @@
 package oopproject;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,18 +11,24 @@ import oopproject.service.LibraryService;
 
 public class Controller {
 
+  private LibraryService libraryService;
   @FXML
   ListView<String> itemListView;
   @FXML
   ComboBox<String> userComboBox;
+  @FXML
   Label itemInfoLabel;
+  @FXML
   Label userInfoLabel;
+  @FXML
   Button borrowButton;
+  @FXML
   Button returnButton;
+  @FXML
   Label statusLabel;
 
   public void initialize() {
-    LibraryService libraryService = new LibraryService();
+    libraryService = new LibraryService();
     libraryService.addItem("Children of Time");
     libraryService.addItem("Children of Ruin");
     libraryService.addItem("Abbadons Gate");
@@ -39,13 +40,25 @@ public class Controller {
 
   @FXML
   protected void onBorrow(ActionEvent event) {
-    System.out.println("Borrowing: " + itemListView.getSelectionModel().getSelectedItem() + " for " +
-        userComboBox.getSelectionModel().getSelectedItem());
+    String selectedItem = itemListView.getSelectionModel().getSelectedItem();
+    String selectedUser = userComboBox.getSelectionModel().getSelectedItem();
+
+    if (selectedItem != null && selectedUser != null) {
+      statusLabel.setText(libraryService.borrowItem(selectedUser, selectedItem));
+    } else {
+      statusLabel.setText("User or item not selected");
+    }
   }
 
   @FXML
   protected void onReturn(ActionEvent event) {
-    System.out.println("Returning: " + itemListView.getSelectionModel().getSelectedItem() + " for " +
-        userComboBox.getSelectionModel().getSelectedItem());
+    String selectedItem = itemListView.getSelectionModel().getSelectedItem();
+    String selectedUser = userComboBox.getSelectionModel().getSelectedItem();
+
+    if (selectedItem != null && selectedUser != null) {
+      statusLabel.setText(libraryService.returnItem(selectedUser, selectedItem));
+    } else {
+      statusLabel.setText("User or item not selected");
+    }
   }
 }

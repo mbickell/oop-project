@@ -15,9 +15,11 @@ public class LibraryService {
     return Collections.unmodifiableList(items);
   }
 
-  public void borrowItem(String user, String item) {
+  public String borrowItem(String user, String item) {
+    return "Borrowing: " + item + " for " + user;
   }
 
-  public void returnItem(String user, String item) {
+  public String returnItem(String user, String item) {
+    return "Returning: " + item + " for " + user;
   }
 }
