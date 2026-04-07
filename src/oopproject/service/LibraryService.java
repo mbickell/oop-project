@@ -4,22 +4,34 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LibraryService {
-  private List<String> items = new ArrayList<String>();
+import oopproject.model.item.LibraryItem;
 
-  public void addItem(String item) {
+public class LibraryService {
+  private List<LibraryItem> items = new ArrayList<LibraryItem>();
+
+  public void addItem(LibraryItem item) {
     items.add(item);
   }
 
-  public List<String> getItems() {
+  public List<LibraryItem> getItems() {
     return Collections.unmodifiableList(items);
   }
 
-  public String borrowItem(String user, String item) {
-    return "Borrowing: " + item + " for " + user;
+  public String borrowItem(String user, LibraryItem item) {
+    if (item.getIsAvailable()) {
+      item.setAvailable(false);
+      return "Borrowing: " + item.getTitle() + " for " + user;
+    }
+
+    return "This item is not available";
   }
 
-  public String returnItem(String user, String item) {
-    return "Returning: " + item + " for " + user;
+  public String returnItem(String user, LibraryItem item) {
+    if (item.getIsAvailable()) {
+      return "This item is not borrowed";
+    }
+
+    item.setAvailable(true);
+    return "Returning: " + item.getTitle() + " for " + user;
   }
 }
