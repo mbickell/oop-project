@@ -1,5 +1,6 @@
 package oopproject;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -21,11 +22,11 @@ public class Controller {
 
   }
 
-  public void onBorrow() {
+  protected void onBorrow(ActionEvent event) {
     System.out.println("Test");
   }
 
-  public void onReturn() {
+  protected void onReturn(ActionEvent event) {
     System.out.println("Test");
   }
 }
