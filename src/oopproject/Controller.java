@@ -34,15 +34,18 @@ public class Controller {
     itemListView.setItems(FXCollections.observableArrayList(libraryService.getItems()));
 
     userComboBox.setItems(FXCollections.observableArrayList("Student", "Teacher", "Guest"));
+    userComboBox.getSelectionModel().select(0);
   }
 
   @FXML
   protected void onBorrow(ActionEvent event) {
-    System.out.println("Test");
+    System.out.println("Borrowing: " + itemListView.getSelectionModel().getSelectedItem() + " for " +
+        userComboBox.getSelectionModel().getSelectedItem());
   }
 
   @FXML
   protected void onReturn(ActionEvent event) {
-    System.out.println("Test");
+    System.out.println("Returning: " + itemListView.getSelectionModel().getSelectedItem() + " for " +
+        userComboBox.getSelectionModel().getSelectedItem());
   }
 }
