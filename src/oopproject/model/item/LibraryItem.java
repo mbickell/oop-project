@@ -5,7 +5,7 @@ public abstract class LibraryItem implements Borrowable {
   private String title;
   private boolean isAvailable;
 
-  LibraryItem(String itemID, String title) {
+  public LibraryItem(String itemID, String title) {
     this.itemID = itemID;
     this.title = title;
     this.isAvailable = true;
