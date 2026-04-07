@@ -16,7 +16,8 @@
     GridPane.columnSpan="2">
   </ListView>
   <Label fx:id="itemInfoLabel" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-  <ComboBox fx:id="userComboBox" GridPane.columnIndex="2" GridPane.rowIndex="0"></ComboBox>
+  <ComboBox fx:id="userComboBox" GridPane.columnIndex="2" GridPane.rowIndex="0"
+    promptText="Select your user" />
   <Label fx:id="userInfoLabel" GridPane.columnIndex="2" GridPane.rowIndex="1" />
   <HBox GridPane.columnIndex="0" GridPane.rowIndex="2">
     <Button fx:id="borrowButton" text="Borrow" onAction="#onBorrow" />
