@@ -9,7 +9,13 @@ import oopproject.model.item.LibraryItem;
 abstract public class LibraryUser {
   private String userID;
   private String name;
-  private List<LibraryItem> borrowedItems = new ArrayList<LibraryItem>();
+  private List<LibraryItem> borrowedItems;
+
+  public LibraryUser(String userID, String name) {
+    this.userID = userID;
+    this.name = name;
+    this.borrowedItems = new ArrayList<LibraryItem>();
+  }
 
   abstract public int getMaxBorrowable();
 
