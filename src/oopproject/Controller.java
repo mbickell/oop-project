@@ -58,6 +58,8 @@ public class Controller {
     libraryService.addItem(new Book("1", "Children of Time", "Adrian Tchaikovsky", "978-1-4472-7328-8"));
     libraryService.addItem(new Book("2", "Children of Ruin", "Adrian Tchaikovsky", "978-0-3164-5253-3"));
     libraryService.addItem(new Magazine("3", "National Geographic", "NG Media", 1));
+    libraryService.addItem(new Magazine("4", "Rolling Stone", "Brian Szejka", 1));
+
     Guest guest = new Guest("1", "Matthew Bickell");
     Student student = new Student("2", "John Wayne", "451265");
     Staff staff = new Staff("3", "Matti Tuomaala", "IT");
