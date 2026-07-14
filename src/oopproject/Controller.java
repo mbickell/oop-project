@@ -12,6 +12,10 @@ import javafx.scene.control.ListView;
 import oopproject.model.item.Book;
 import oopproject.model.item.LibraryItem;
 import oopproject.model.item.Magazine;
+import oopproject.model.user.Guest;
+import oopproject.model.user.LibraryUser;
+import oopproject.model.user.Staff;
+import oopproject.model.user.Student;
 import oopproject.service.LibraryService;
 
 public class Controller {
@@ -20,7 +24,7 @@ public class Controller {
   @FXML
   ListView<LibraryItem> itemListView;
   @FXML
-  ComboBox<String> userComboBox;
+  ComboBox<LibraryUser> userComboBox;
   @FXML
   Label itemInfoLabel;
   @FXML
@@ -37,8 +41,11 @@ public class Controller {
     libraryService.addItem(new Book("1", "Children of Time", "Adrian Tchaikovsky", "978-1-4472-7328-8"));
     libraryService.addItem(new Book("2", "Children of Ruin", "Adrian Tchaikovsky", "978-0-3164-5253-3"));
     libraryService.addItem(new Magazine("3", "National Geographic", "NG Media", 1));
+    Guest guest = new Guest("1", "Matthew Bickell");
+    Student student = new Student("2", "John Wayne", "451265");
+    Staff staff = new Staff("3", "Matti Tuomaala", "IT");
 
-    userComboBox.setItems(FXCollections.observableArrayList("Student", "Teacher", "Guest"));
+    userComboBox.setItems(FXCollections.observableArrayList(student, staff, guest));
     userComboBox.getSelectionModel().select(0);
 
     updateItems();
@@ -55,7 +62,7 @@ public class Controller {
   @FXML
   protected void onBorrow(ActionEvent event) {
     LibraryItem selectedItem = itemListView.getSelectionModel().getSelectedItem();
-    String selectedUser = userComboBox.getSelectionModel().getSelectedItem();
+    LibraryUser selectedUser = userComboBox.getSelectionModel().getSelectedItem();
 
     if (selectedItem != null && selectedUser != null) {
       statusLabel.setText(libraryService.borrowItem(selectedUser, selectedItem));
@@ -69,7 +76,7 @@ public class Controller {
   @FXML
   protected void onReturn(ActionEvent event) {
     LibraryItem selectedItem = itemListView.getSelectionModel().getSelectedItem();
-    String selectedUser = userComboBox.getSelectionModel().getSelectedItem();
+    LibraryUser selectedUser = userComboBox.getSelectionModel().getSelectedItem();
 
     if (selectedItem != null && selectedUser != null) {
       statusLabel.setText(libraryService.returnItem(selectedUser, selectedItem));

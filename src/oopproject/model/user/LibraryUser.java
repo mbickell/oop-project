@@ -53,7 +53,6 @@ abstract public class LibraryUser {
     }
 
     int borrowedBookIndex = 0;
-    ;
 
     for (int i = 0; i < borrowedItems.size(); i++) {
       if (borrowedItems.get(i).getItemID().compareTo(item.getItemID()) == 0) {
