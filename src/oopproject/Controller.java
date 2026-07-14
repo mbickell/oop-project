@@ -42,7 +42,7 @@ public class Controller {
       public void changed(ObservableValue<? extends LibraryUser> observable,
           LibraryUser oldValue,
           LibraryUser newValue) {
-        userInfoLabel.setText(newValue.getName());
+        updateUserInfo(newValue);
       }
     });
 
@@ -63,8 +63,7 @@ public class Controller {
     Staff staff = new Staff("3", "Matti Tuomaala", "IT");
 
     userComboBox.setItems(FXCollections.observableArrayList(student, staff, guest));
-
-    itemListView.getSelectionModel().select(1);
+    userComboBox.getSelectionModel().select(0);
 
     updateItems();
   }
@@ -81,6 +80,7 @@ public class Controller {
     }
 
     updateItems();
+    updateUserInfo(selectedUser);
   }
 
   @FXML
@@ -95,9 +95,23 @@ public class Controller {
     }
 
     updateItems();
+    updateUserInfo(selectedUser);
   }
 
   private void updateItems() {
     itemListView.setItems(FXCollections.observableArrayList(libraryService.getItems()));
+  }
+
+  private void updateUserInfo(LibraryUser user) {
+    String borrowedItems = "";
+
+    for (LibraryItem item : user.getBorrowedItems()) {
+      borrowedItems += "\n" + item;
+    }
+
+    userInfoLabel.setText(
+        "Type: " + user.getUserType() +
+            "\nBorrow Limit: " + user.getBorrowedItems().size() + "/" + +user.getMaxBorrowable() +
+            "\nBorrowed Items: " + borrowedItems);
   }
 }
