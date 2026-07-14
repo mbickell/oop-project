@@ -28,7 +28,7 @@ public class LibraryService {
     }
 
     user.borrowItem(item);
-    return "Borrowing: " + item.getTitle() + " for " + user;
+    return "Borrowing: " + item.getTitle() + "\nfor: " + user;
   }
 
   public String returnItem(LibraryUser user, LibraryItem item) {

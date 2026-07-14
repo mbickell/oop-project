@@ -7,25 +7,52 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.ColumnConstraints?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-  prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
-  xmlns:fx="http://javafx.com/fxml/1" fx:controller="oopproject.Controller">
+  prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8"
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="oopproject.Controller"
+  hgap="20"
+>
 
-  <ListView fx:id="itemListView" GridPane.columnIndex="0" GridPane.rowIndex="0"
-    GridPane.columnSpan="2">
-  </ListView>
+  <padding>
+    <Insets top="15" right="15" bottom="15" left="15" />
+  </padding>
 
-  <HBox GridPane.columnIndex="0" GridPane.rowIndex="1">
-    <Button fx:id="borrowButton" text="Borrow" onAction="#onBorrow" />
-    <Button fx:id="returnButton" text="Return" onAction="#onReturn" />
-  </HBox>
+  <columnConstraints>
+    <ColumnConstraints percentWidth="60" />
+    <ColumnConstraints percentWidth="40" hgrow="ALWAYS" />
+  </columnConstraints>
 
-  <Label fx:id="statusLabel" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+  <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="10">
+    <ListView fx:id="itemListView" GridPane.rowIndex="0" VBox.vgrow="ALWAYS" />
 
-  <Label fx:id="itemInfoLabel" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+    <ComboBox fx:id="userComboBox" GridPane.rowIndex="1"
+      promptText="Select your user" />
 
-  <ComboBox fx:id="userComboBox" GridPane.columnIndex="2" GridPane.rowIndex="1"
-    promptText="Select your user" />
-  <Label fx:id="userInfoLabel" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+    <HBox GridPane.rowIndex="2" spacing="10">
+      <Button fx:id="borrowButton" text="Borrow" onAction="#onBorrow" prefWidth="90" />
+      <Button fx:id="returnButton" text="Return" onAction="#onReturn" prefWidth="90" />
+    </HBox>
+
+  </VBox>
+
+  <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" spacing="15">
+    <Label text="Item Details"
+      style="-fx-font-weight: bold; -fx-font-size: 14;" />
+    <Label fx:id="itemInfoLabel" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="2" />
+    <Separator />
+
+    <Label text="User"
+      style="-fx-font-weight: bold; -fx-font-size: 14;" />
+    <Label fx:id="userInfoLabel" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+
+    <Separator />
+
+    <Label fx:id="statusLabel" GridPane.rowIndex="4" />
+  </VBox>
 </GridPane>

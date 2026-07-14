@@ -37,6 +37,23 @@ public class Controller {
   Label statusLabel;
 
   public void initialize() {
+    userComboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LibraryUser>() {
+      @Override
+      public void changed(ObservableValue<? extends LibraryUser> observable,
+          LibraryUser oldValue,
+          LibraryUser newValue) {
+        userInfoLabel.setText(newValue.getName());
+      }
+    });
+
+    itemListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LibraryItem>() {
+      @Override
+      public void changed(ObservableValue<? extends LibraryItem> observable, LibraryItem oldValue,
+          LibraryItem newValue) {
+        itemInfoLabel.setText(newValue.getDisplayInfo());
+      }
+    });
+
     libraryService = new LibraryService();
     libraryService.addItem(new Book("1", "Children of Time", "Adrian Tchaikovsky", "978-1-4472-7328-8"));
     libraryService.addItem(new Book("2", "Children of Ruin", "Adrian Tchaikovsky", "978-0-3164-5253-3"));
@@ -46,17 +63,10 @@ public class Controller {
     Staff staff = new Staff("3", "Matti Tuomaala", "IT");
 
     userComboBox.setItems(FXCollections.observableArrayList(student, staff, guest));
-    userComboBox.getSelectionModel().select(0);
+
+    itemListView.getSelectionModel().select(1);
 
     updateItems();
-
-    itemListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LibraryItem>() {
-      @Override
-      public void changed(ObservableValue<? extends LibraryItem> observable, LibraryItem oldValue,
-          LibraryItem newValue) {
-        itemInfoLabel.setText(newValue.getDisplayInfo());
-      }
-    });
   }
 
   @FXML
