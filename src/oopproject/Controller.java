@@ -21,6 +21,9 @@ import oopproject.service.LibraryService;
 public class Controller {
 
   private LibraryService libraryService;
+  private Guest guest;
+  private Student student;
+  private Staff staff;
   @FXML
   ListView<LibraryItem> itemListView;
   @FXML
@@ -60,9 +63,9 @@ public class Controller {
     libraryService.addItem(new Magazine("3", "National Geographic", "NG Media", 1));
     libraryService.addItem(new Magazine("4", "Rolling Stone", "Brian Szejka", 1));
 
-    Guest guest = new Guest("1", "Matthew Bickell");
-    Student student = new Student("2", "John Wayne", "451265");
-    Staff staff = new Staff("3", "Matti Tuomaala", "IT");
+    guest = new Guest("1", "Matthew Bickell");
+    student = new Student("2", "John Wayne", "451265");
+    staff = new Staff("3", "Matti Tuomaala", "IT");
 
     userComboBox.setItems(FXCollections.observableArrayList(student, staff, guest));
     userComboBox.getSelectionModel().select(0);
